@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.1.3">
+    <title>Jervy's Wear | Premium Comfort in Kumasi</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#1c1917', // Stone 900
+                            primary: '#b45309', // Amber 700 - Warm, rich
+                            light: '#fef3c7', // Amber 50
+                            accent: '#10b981', // Emerald 500 - for WhatsApp/Success
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles & Animations */
+        body {
+            background-color: #fafaf9; /* Stone 50 */
+            color: #1c1917;
+        }
+
+        .hero-pattern {
+            background-color: #fef3c7;
+            background-image: radial-gradient(#b45309 0.5px, transparent 0.5px), radial-gradient(#b45309 0.5px, #fef3c7 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            opacity: 0.8;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+        }
+
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .pulse-whatsapp {
+            animation: pulse-green 2s infinite;
+        }
+
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(to right, #b45309, #d97706);
+        }
+        
+        .img-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 50%);
+            border-radius: 0.5rem;
+        }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-card transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <span class="font-serif text-3xl font-bold text-brand-primary">Jervy's<span class="text-brand-dark text-xl font-sans ml-1">Wear</span></span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#ladies" class="text-brand-dark hover:text-brand-primary font-medium transition">Ladies Section 💃🏾</a>
+                    <a href="#gents" class="text-brand-dark hover:text-brand-primary font-medium transition">Men's Section 🕺🏾</a>
+                    <a href="#delivery" class="text-brand-dark hover:text-brand-primary font-medium transition">Delivery & MoMo</a>
+                    <a href="https://wa.me/233551816147" target="_blank" class="bg-brand-primary text-white px-5 py-2.5 rounded-full font-semibold hover:bg-amber-800 transition shadow-lg flex items-center gap-2">
+                        <i class="fab fa-whatsapp text-xl"></i> Chat Now
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-brand-dark hover:text-brand-primary focus:outline-none p-2">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full">
+            <div class="px-4 pt-2 pb-6 space-y-1 shadow-xl">
+                <a href="#ladies" class="block px-3 py-3 text-base font-medium text-brand-dark hover:bg-brand-light rounded-md">Ladies Section 💃🏾</a>
+                <a href="#gents" class="block px-3 py-3 text-base font-medium text-brand-dark hover:bg-brand-light rounded-md">Men's Section 🕺🏾</a>
+                <a href="#delivery" class="block px-3 py-3 text-base font-medium text-brand-dark hover:bg-brand-light rounded-md">Delivery & Payment</a>
+                <a href="https://wa.me/233551816147" class="mt-4 flex items-center justify-center gap-2 w-full bg-brand-primary text-white px-5 py-3 rounded-md font-semibold">
+                    <i class="fab fa-whatsapp"></i> WhatsApp Us
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden">
+        <div class="absolute inset-0 hero-pattern -z-10"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- Copy side -->
+                <div class="text-center lg:text-left z-10">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-100 text-brand-primary font-medium text-sm mb-6 border border-amber-200">
+                        <i class="fas fa-map-marker-alt"></i> Based in Atwima Akropong, Kumasi
+                    </div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
+                        Welcome to Jervy's Wear, <span class="text-gradient">Chale!</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-700 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Your ultimate plug for premium comfort. From soft, cozy nightwear for the fine girls to sharp, breathable singlets for the bossus. <strong class="text-brand-dark">Top quality fabric, local prices.</strong> Because you deserve value for your money!
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="https://wa.me/233551816147" target="_blank" class="bg-brand-accent text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-emerald-600 transition-transform transform hover:-translate-y-1 shadow-lg shadow-emerald-200 flex items-center justify-center gap-2">
+                            <i class="fab fa-whatsapp text-2xl"></i> Chat 0551816147
+                        </a>
+                        <a href="tel:0209817818" class="bg-white text-brand-dark border-2 border-gray-200 px-8 py-4 rounded-full font-bold text-lg hover:border-brand-primary hover:text-brand-primary transition-colors flex items-center justify-center gap-2">
+                            <i class="fas fa-phone-alt"></i> Call 0209817818
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Image side -->
+                <div class="relative hidden md:block">
+                    <!-- Abstract representation using styling since we can't load specific brand images -->
+                    <div class="relative w-full aspect-square max-w-md mx-auto float-animation">
+                        <div class="absolute inset-0 bg-brand-primary rounded-[3rem] rotate-6 opacity-20"></div>
+                        <div class="absolute inset-0 bg-brand-light rounded-[3rem] -rotate-3 overflow-hidden shadow-2xl border-4 border-white">
+                            <!-- Placeholder image representing fabric/comfort -->
+                            <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Comfortable fabric" class="w-full h-full object-cover">
+                        </div>
+                        
+                        <!-- Floating badge -->
+                        <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl glass-card flex items-center gap-3 border border-gray-100">
+                            <div class="bg-brand-light p-3 rounded-full text-brand-primary">
+                                <i class="fas fa-star text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 uppercase tracking-wider font-semibold">Our Promise</p>
+                                <p class="font-bold text-brand-dark">Quality meets Price</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us / Strategy -->
+    <section class="py-16 bg-white border-y border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 text-center">
+                <div class="p-6 rounded-2xl hover:bg-brand-light transition duration-300">
+                    <div class="w-16 h-16 mx-auto bg-amber-100 rounded-full flex items-center justify-center mb-4 text-brand-primary text-2xl">
+                        <i class="fas fa-wind"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2 text-brand-dark">Ghana Weather Ready</h3>
+                    <p class="text-gray-600">Breathable cotton that absorbs sweat. Stay cool and confident under the hot sun or sleeping at night.</p>
+                </div>
+                <div class="p-6 rounded-2xl hover:bg-brand-light transition duration-300">
+                    <div class="w-16 h-16 mx-auto bg-amber-100 rounded-full flex items-center justify-center mb-4 text-brand-primary text-2xl">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2 text-brand-dark">Long-Lasting Quality</h3>
+                    <p class="text-gray-600">No shrinking, no fast fading, no rolling down. Wash it multiple times, chale, it still stays sleek!</p>
+                </div>
+                <div class="p-6 rounded-2xl hover:bg-brand-light transition duration-300">
+                    <div class="w-16 h-16 mx-auto bg-amber-100 rounded-full flex items-center justify-center mb-4 text-brand-primary text-2xl">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2 text-brand-dark">Value For Money</h3>
+                    <p class="text-gray-600">Premium touch but local prices. We accept MoMo to make your payment stress-free.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ladies Section -->
+    <section id="ladies" class="py-20 bg-[#fafaf9]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-sm font-bold tracking-widest text-brand-primary uppercase mb-2">Jervy's Ladies</h2>
+                <h3 class="text-3xl md:text-4xl font-serif font-bold text-brand-dark">For the Fine Girls 💃🏾</h3>
+                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Smooth, cozy, and aesthetic. Step out with confidence and sleep like a queen.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Nightwear -->
+                <div class="group relative rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 bg-white">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1542452255191-c85a98f2cbaf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Ladies Nightwear" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="img-overlay"></div>
+                        <h4 class="absolute bottom-4 left-4 text-2xl font-serif font-bold text-white z-10">Cozy Nightwear</h4>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">Perfect for chilling at home or a "Good Night's Sleep". Smooth fabric that feels like a soft touch against your skin.</p>
+                        <a href="https://wa.me/233551816147?text=Hi%20Jervy!%20I'm%20interested%20in%20the%20Ladies%20Nightwear." target="_blank" class="text-brand-primary font-bold hover:text-amber-800 flex items-center gap-2">
+                            Order on WhatsApp <i class="fas fa-arrow-right text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Panties -->
+                <div class="group relative rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 bg-white">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Seamless Panties" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="img-overlay"></div>
+                        <h4 class="absolute bottom-4 left-4 text-2xl font-serif font-bold text-white z-10">Seamless Panties</h4>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">High elasticity, breathable soft cotton for daily wear. Zero visible panty lines when you wear that sleek dress!</p>
+                        <a href="https://wa.me/233551816147?text=Hi%20Jervy!%20I'm%20interested%20in%20the%20Seamless%20Panties." target="_blank" class="text-brand-primary font-bold hover:text-amber-800 flex items-center gap-2">
+                            Order on WhatsApp <i class="fas fa-arrow-right text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Vests -->
+                <div class="group relative rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 bg-white">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1503342394128-c104d54dba01?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Ladies Vests" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="img-overlay"></div>
+                        <h4 class="absolute bottom-4 left-4 text-2xl font-serif font-bold text-white z-10">Comfy Vests</h4>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">Lightweight and sweat-absorbing. The perfect layered comfort under your official or casual outfits.</p>
+                        <a href="https://wa.me/233551816147?text=Hi%20Jervy!%20I'm%20interested%20in%20the%20Ladies%20Vests." target="_blank" class="text-brand-primary font-bold hover:text-amber-800 flex items-center gap-2">
+                            Order on WhatsApp <i class="fas fa-arrow-right text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Men Section -->
+    <section id="gents" class="py-20 bg-brand-dark text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-sm font-bold tracking-widest text-brand-primary uppercase mb-2">Jervy's Gents</h2>
+                <h3 class="text-3xl md:text-4xl font-serif font-bold">For the Bossus 🕺🏾</h3>
+                <p class="mt-4 text-lg text-gray-400 max-w-2xl mx-auto">No thigh chafing, no tight waistbands. Just pure comfort in this our Ghana sun.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-10 max-w-4xl mx-auto">
+                <!-- Boxers & Briefs -->
+                <div class="bg-stone-800 rounded-3xl p-1 lg:p-8 flex flex-col sm:flex-row gap-6 items-center hover:bg-stone-700 transition duration-300">
+                    <div class="w-full sm:w-1/2 h-48 sm:h-full rounded-2xl overflow-hidden relative">
+                         <img src="https://images.unsplash.com/photo-1562183241-b937e95585b6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Men's Boxers" class="w-full h-full object-cover">
+                    </div>
+                    <div class="w-full sm:w-1/2 p-4 sm:p-0">
+                        <h4 class="text-2xl font-bold mb-3">Boxers & Underpants</h4>
+                        <p class="text-gray-400 mb-6 text-sm">Non-tight, breathable waistbands made of soft cotton. Built to prevent chafing and stay durable after multiple washes.</p>
+                        <a href="https://wa.me/233551816147?text=Bossu,%20I%20need%20the%20Boxers/Briefs." target="_blank" class="inline-block bg-white text-brand-dark px-6 py-2 rounded-full font-bold hover:bg-brand-primary hover:text-white transition-colors">
+                            Grab Yours
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Singlets -->
+                <div class="bg-stone-800 rounded-3xl p-1 lg:p-8 flex flex-col sm:flex-row gap-6 items-center hover:bg-stone-700 transition duration-300">
+                    <div class="w-full sm:w-1/2 h-48 sm:h-full rounded-2xl overflow-hidden relative">
+                         <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Men's Singlets" class="w-full h-full object-cover">
+                    </div>
+                    <div class="w-full sm:w-1/2 p-4 sm:p-0">
+                        <h4 class="text-2xl font-bold mb-3">Cotton Singlets</h4>
+                        <p class="text-gray-400 mb-6 text-sm">Neat, bright undershirts for your work or church shirts. Ultimate sweat protection for long days in the office or town.</p>
+                        <a href="https://wa.me/233551816147?text=Bossu,%20I%20need%20the%20Singlets." target="_blank" class="inline-block bg-white text-brand-dark px-6 py-2 rounded-full font-bold hover:bg-brand-primary hover:text-white transition-colors">
+                            Grab Yours
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Delivery & Payment -->
+    <section id="delivery" class="py-20 bg-amber-50">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden">
+                <div class="grid md:grid-cols-2">
+                    <div class="p-10 lg:p-12 bg-brand-primary text-white flex flex-col justify-center">
+                        <h3 class="text-3xl font-serif font-bold mb-6">Sharp Delivery & Easy Payment</h3>
+                        <p class="mb-8 text-amber-100 text-lg">We make getting your hands on premium quality hassle-free. Order from the comfort of your home and let us handle the rest.</p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-4">
+                                <div class="bg-white/20 p-2 rounded-lg mt-1"><i class="fas fa-truck-fast"></i></div>
+                                <div>
+                                    <h5 class="font-bold">Nationwide Delivery</h5>
+                                    <p class="text-sm text-amber-100">Via trusted services: VVIP, Ford, VIP.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="bg-white/20 p-2 rounded-lg mt-1"><i class="fas fa-motorcycle"></i></div>
+                                <div>
+                                    <h5 class="font-bold">Kumasi Local Drop</h5>
+                                    <p class="text-sm text-amber-100">Fast delivery via Bolt, Yango, or dispatch.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-10 lg:p-12 flex flex-col justify-center">
+                        <h4 class="text-xl font-bold mb-6 text-brand-dark border-b pb-4">Payment Methods Accepted</h4>
+                        
+                        <div class="flex flex-wrap gap-4 mb-8">
+                            <div class="px-4 py-2 border-2 border-yellow-400 rounded-lg text-sm font-bold text-brand-dark bg-yellow-50 flex items-center gap-2">
+                                <div class="w-3 h-3 rounded-full bg-yellow-400"></div> MTN MoMo
+                            </div>
+                            <div class="px-4 py-2 border-2 border-red-500 rounded-lg text-sm font-bold text-brand-dark bg-red-50 flex items-center gap-2">
+                                <div class="w-3 h-3 rounded-full bg-red-500"></div> Telecel Cash
+                            </div>
+                            <div class="px-4 py-2 border-2 border-blue-500 rounded-lg text-sm font-bold text-brand-dark bg-blue-50 flex items-center gap-2">
+                                <div class="w-3 h-3 rounded-full bg-blue-500"></div> AT Money
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                            <h5 class="font-bold text-brand-dark mb-2"><i class="fas fa-store text-brand-primary mr-2"></i> Visit Our Store</h5>
+                            <p class="text-gray-600 text-sm">Prefer to feel the quality yourself? Pop into our physical store / pickup point at <strong>Atwima Akropong, Kumasi (Ashanti Region)</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Template -->
+    <footer class="bg-brand-dark text-gray-300 py-12 border-t border-gray-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8 border-b border-gray-700 pb-8 mb-8">
+                <div>
+                    <span class="font-serif text-3xl font-bold text-white">Jervy's<span class="text-brand-primary text-xl font-sans ml-1">Wear</span></span>
+                    <p class="mt-2 text-sm">Quality sleepwear & underwear for everyday Ghanaians.</p>
+                </div>
+                <div class="flex gap-4">
+                    <!-- Social placeholders -->
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-primary transition text-white"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-primary transition text-white"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-primary transition text-white"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+
+            <!-- Standard Footer Details as requested -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 text-sm text-center sm:text-left">
+                <div>
+                    <h6 class="text-white font-bold mb-2 uppercase tracking-wider text-xs">Location</h6>
+                    <p><i class="fas fa-map-marker-alt text-brand-primary mr-2"></i> Atwima Akropong</p>
+                    <p class="ml-6 text-gray-500">Kumasi, Ashanti Region</p>
+                </div>
+                <div>
+                    <h6 class="text-white font-bold mb-2 uppercase tracking-wider text-xs">Call / WhatsApp</h6>
+                    <p><i class="fas fa-phone-alt text-brand-primary mr-2"></i> <a href="tel:0209817818" class="hover:text-white transition">0209817818</a></p>
+                    <p><i class="fab fa-whatsapp text-brand-primary mr-2"></i> <a href="https://wa.me/233551816147" class="hover:text-white transition">0551816147</a></p>
+                </div>
+                <div>
+                    <h6 class="text-white font-bold mb-2 uppercase tracking-wider text-xs">Delivery</h6>
+                    <p><i class="fas fa-truck text-brand-primary mr-2"></i> We deliver everywhere in Kumasi & nation-wide!</p>
+                </div>
+                <div>
+                    <h6 class="text-white font-bold mb-2 uppercase tracking-wider text-xs">Payment</h6>
+                    <p><i class="fas fa-mobile-alt text-brand-primary mr-2"></i> MoMo accepted.</p>
+                    <div class="flex gap-2 mt-2 justify-center sm:justify-start opacity-50">
+                        <span class="px-2 py-1 bg-yellow-500 text-black text-[10px] rounded font-bold">MTN</span>
+                        <span class="px-2 py-1 bg-red-600 text-white text-[10px] rounded font-bold">Telecel</span>
+                        <span class="px-2 py-1 bg-blue-600 text-white text-[10px] rounded font-bold">AT</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 pt-4 text-center text-xs text-gray-600">
+                &copy; <script>document.write(new Date().getFullYear())</script> Jervy's Wear. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/233551816147?text=Hi%20Jervy's%20Wear,%20I'm%20visiting%20from%20your%20website!" 
+       target="_blank" 
+       class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl shadow-xl pulse-whatsapp hover:scale-110 transition-transform duration-300"
+       aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile menu toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = btn.querySelector('i');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            if (menu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-md');
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.style.background = 'rgba(255, 255, 255, 0.9)';
+            }
+        });
+    </script>
+</body>
+</html>
