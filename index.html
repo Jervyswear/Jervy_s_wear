@@ -163,7 +163,7 @@
                 </div>
 
                 <!-- Image side -->
-                <div class="relative hidden md:block">
+              <div class="relative block w-full max-w-[260px] sm:max-w-sm mx-auto">
                     <!-- Abstract representation using styling since we can't load specific brand images -->
                     <div class="relative w-full aspect-square max-w-md mx-auto float-animation">
                         <div class="absolute inset-0 bg-brand-primary rounded-[3rem] rotate-6 opacity-20"></div>
@@ -724,6 +724,21 @@
    aria-label="Call Jervy's Wear">
     <i class="fas fa-phone-alt"></i>
 </a>
+
+    <!-- Product Image Popup -->
+<div id="imageModal"
+     class="hidden fixed inset-0 z-[100] bg-black/80 flex items-center justify-center p-4">
+
+    <button id="closeImageModal"
+            class="absolute top-5 right-5 bg-white text-black w-12 h-12 rounded-full text-3xl font-bold shadow-lg hover:bg-gray-200 z-[101]">
+        &times;
+    </button>
+
+    <img id="popupImage"
+         src=""
+         alt="Product Preview"
+         class="max-w-[90vw] max-h-[85vh] object-contain rounded-xl shadow-2xl">
+</div>
 
     <!-- Scripts -->
     <script>
